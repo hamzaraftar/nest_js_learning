@@ -21,7 +21,7 @@ export class StudentController {
 
   @Get(':id')
   getStudentById(@Param('id') id: string) {
-    this.studentService.getStudentById(Number(id));
+    return this.studentService.getStudentById(Number(id));
   }
 
   @Post()
@@ -34,7 +34,7 @@ export class StudentController {
     @Param('id') id: string,
     @Body() body: { name: string; age: number },
   ) {
-    this.studentService.updateStudent(Number(id), body);
+    return this.studentService.updateStudent(Number(id), body);
   }
 
   @Patch(':id')
@@ -42,11 +42,11 @@ export class StudentController {
     @Param('id') id: string,
     @Body() body: Partial<{ name: string; age: number }>,
   ) {
-    this.studentService.patchStudent(Number(id), body);
+    return this.studentService.patchStudent(Number(id), body);
   }
 
   @Delete(':id')
   deleteStudent(@Param('id') id: string) {
-    this.studentService.deleteStudent(Number(id));
+    return this.studentService.deleteStudent(Number(id));
   }
 }

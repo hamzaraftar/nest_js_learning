@@ -13,12 +13,11 @@ export class StudentService {
   }
 
   getStudentById(id: number) {
-    const student = this.students.find((s) => s.id === id);
+    const student= this.students.find((s) => s.id === id);
     if (!student) {
       throw new NotFoundException('student not found');
-    } else {
-      return student;
     }
+    return student;
   }
 
   //   post
