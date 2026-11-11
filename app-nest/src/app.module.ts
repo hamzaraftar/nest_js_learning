@@ -8,9 +8,11 @@ import { ProductController } from './product/product.controller.js';
 import { EmployeeModule } from './employee/employee.module.js';
 import { CategoryModule } from './category/category.module.js';
 import { StudentModule } from './student/student.module.js';
+import { HamzaModule } from './hamza/hamza.module.js';
+import { CustomerModule } from './customer/customer.module.js';
 
 @Module({
-  imports: [UserModule, EmployeeModule, CategoryModule, StudentModule],
+  imports: [UserModule, EmployeeModule, CategoryModule, StudentModule, HamzaModule, CustomerModule],
   controllers: [AppController, UserController, ProductController],
   providers: [AppService, ProductService],
 })
