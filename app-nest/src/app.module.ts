@@ -11,10 +11,11 @@ import { StudentModule } from './student/student.module.js';
 import { HamzaModule } from './hamza/hamza.module.js';
 import { CustomerModule } from './customer/customer.module.js';
 import { MynameController } from './myname/myname.controller.js';
+import { ExceptionController } from './exception/exception.controller.js';
 
 @Module({
   imports: [UserModule, EmployeeModule, CategoryModule, StudentModule, HamzaModule, CustomerModule],
-  controllers: [AppController, UserController, ProductController, MynameController],
+  controllers: [AppController, UserController, ProductController, MynameController, ExceptionController],
   providers: [AppService, ProductService],
 })
 export class AppModule {}
