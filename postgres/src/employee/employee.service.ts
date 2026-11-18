@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Employee } from './employee.entity.js';
 import { Repository } from 'typeorm';
@@ -12,6 +12,19 @@ export class EmployeeService {
 
   async create(employeeData: Partial<Employee>): Promise<Employee> {
     const employee = this.employeeRepository.create(employeeData);
-    return this.employeeRepository.save(employee);
+    return await this.employeeRepository.save(employee);
+  }
+
+  async findAll(): Promise<Employee[]> {
+    return await this.employeeRepository.find();
+  }
+
+  
+  async findById(id: number): Promise<Employee> {
+    const employee = await this.employeeRepository.findOneBy({ id });
+    if (!employee) {
+      throw new NotFoundException(`Empolyee with ID:${id} not found `);
+    }
+    return employee;
   }
 }
