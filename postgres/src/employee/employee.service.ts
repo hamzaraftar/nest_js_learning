@@ -18,7 +18,6 @@ export class EmployeeService {
   async findAll(): Promise<Employee[]> {
     return await this.employeeRepository.find();
   }
-
   
   async findById(id: number): Promise<Employee> {
     const employee = await this.employeeRepository.findOneBy({ id });
@@ -27,7 +26,6 @@ export class EmployeeService {
     }
     return employee;
   }
-
 
   async update(id:number, updatedEmployeeData: Partial<Employee>): Promise<Employee> 
   {
@@ -38,5 +36,14 @@ export class EmployeeService {
 
     const updated = Object.assign(employee, updatedEmployeeData);
     return await this.employeeRepository.save(updated);
+  }
+
+
+  async delete(id: number):Promise<{message:string }>{
+    const result = await this.employeeRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Employee with ID:${id} not found `);
+    }
+    return { message: `Employee with ID:${id} deleted successfully` };
   }
 }
